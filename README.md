@@ -92,6 +92,19 @@ ng serve
 Abre el navegador en `http://localhost:4200`
 
 ---
+## 🔑 Variables de entorno
+
+Copia el archivo de ejemplo y rellena tus credenciales:
+
+```bash
+cp src/environments/environment.example.ts src/environments/environment.ts
+```
+
+Necesitarás credenciales de:
+- [Firebase Console](https://console.firebase.google.com)
+- [TMB Developer Portal](https://developer.tmb.cat)
+
+---
 
 ## 🛒 CartService
 
