@@ -1,6 +1,6 @@
-# 🌸 Sakura Pâtisserie · 桜パティスリー
+# 🌸 Shirayuki Pâtisserie · 白雪パティスリー
 
-Aplicación web de pastelería japonesa artesanal, construida con **Angular 17+** usando la API moderna de señales (Signals).
+Aplicación web de pastelería japonesa artesanal, construida con **Angular 18+** usando la API moderna de señales (Signals).
 
 ---
 
@@ -12,6 +12,7 @@ Aplicación web de pastelería japonesa artesanal, construida con **Angular 17+*
 - Autenticación de usuario (login / logout)
 - Navegación entre páginas con Angular Router
 - Arquitectura basada en **Signals** y **computed values**
+- Paradas de bus cercanas en tiempo real via **API i-Bus de TMB**
 
 ---
 
@@ -19,11 +20,13 @@ Aplicación web de pastelería japonesa artesanal, construida con **Angular 17+*
 
 | Tecnología | Versión |
 |---|---|
-| Angular | 17+ |
+| Angular | 18+ |
 | TypeScript | 5+ |
 | Angular Signals | API nativa |
 | Angular Router | Standalone |
+| HttpClient | Angular nativo |
 | SCSS | — |
+| API i-Bus TMB | v1 |
 
 ---
 
@@ -34,19 +37,23 @@ src/
 ├── app/
 │   ├── core/
 │   │   ├── models/
-│   │   │   └── product.model.ts       # Interfaz Product y CartItem
+│   │   │   ├── product.model.ts       # Interfaz Product y CartItem
+│   │   │   └── bus-stop.model.ts      # Interfaz BusStop y BusArrival
 │   │   └── services/
 │   │       ├── auth.service.ts        # Autenticación
 │   │       ├── cart.service.ts        # Carrito reactivo con Signals
-│   │       └── counter.service.ts     # Contador de práctica
-│   ├── features/
-│   │   ├── home/                      # Página de inicio
+│   │       └── bus.service.ts         # Paradas cercanas + tiempo real TMB
+│   ├── pages/
+│   │   ├── home/                      # Página de inicio + sección buses
 │   │   ├── menu/                      # Catálogo de productos
 │   │   └── about/                     # Página nosotras
 │   └── shared/
 │       └── components/
 │           ├── navbar/                # Navbar + panel lateral del carrito
 │           └── product-card/          # Tarjeta de producto
+└── public/
+    └── images/
+        └── dulces-japoneses.jpg       # Imagen hero
 ```
 
 ---
@@ -55,8 +62,8 @@ src/
 
 ```bash
 # Clonar el repositorio
-git clone https://github.com/tu-usuario/sakura-patisserie.git
-cd sakura-patisserie
+git clone https://github.com/andreaonweb/project_m1.git
+cd project_m1
 
 # Instalar dependencias
 npm install
@@ -82,11 +89,28 @@ getItems()         // devuelve ReadonlySignal<CartItem[]>
 
 ---
 
+## 🚌 BusService · API TMB
+
+Muestra las paradas de bus más cercanas a la pastelería con tiempos de llegada en tiempo real usando la API i-Bus de TMB.
+
+```typescript
+loadNearbyStops()  // carga paradas cercanas y lanza llamadas de tiempo real
+```
+
+Requiere credenciales de [developer.tmb.cat](https://developer.tmb.cat):
+
+```typescript
+const APP_ID  = 'tu_app_id';
+const APP_KEY = 'tu_app_key';
+```
+
+---
+
 ## 🌸 Páginas
 
 | Ruta | Descripción |
 |---|---|
-| `/home` | Bienvenida y características de la pastelería |
+| `/home` | Bienvenida, características y paradas de bus cercanas |
 | `/menu` | Catálogo de productos con carrito integrado |
 | `/about` | Información sobre el equipo |
 | `/auth` | Inicio de sesión |
@@ -95,4 +119,4 @@ getItems()         // devuelve ReadonlySignal<CartItem[]>
 
 ## 📝 Licencia
 
-Proyecto personal de aprendizaje · hecho con 🍡 y mucho matcha.
+Proyecto de aprendizaje · hecho con 🍡 y mucho matcha.
