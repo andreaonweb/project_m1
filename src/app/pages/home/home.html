@@ -1,7 +1,7 @@
 <section class="hero">
   <div class="hero__content">
     <p class="hero__sub">🌸 Bienvenida a</p>
-    <h1 class="hero__title">Sakura Pâtisserie</h1>
+    <h1 class="hero__title">Shirayuki Pâtisserie</h1>
     <p class="hero__tagline">桜パティスリー</p>
     <p class="hero__desc">
       Dulces japoneses artesanales hechos con amor,<br>
@@ -35,4 +35,64 @@
     <h3>Packaging kawaii</h3>
     <p>Cajas y lazos perfectos para regalar felicidad.</p>
   </div>
+</section>
+
+<section class="nearby-buses">
+  <div class="nearby-buses__header">
+    <h2>🚌 Cómo llegar</h2>
+    <p>Paradas de bus cercanas a nuestra pastelería</p>
+    <p class="nearby-buses__address">📍 Consell de Cent, 321 · Barcelona</p>
+  </div>
+
+  @if (!busService.loading() && busService.stops().length === 0) {
+  <div class="nearby-buses__cta">
+    <button class="btn-primary" (click)="busService.loadNearbyStops()">
+      Ver paradas cercanas 🗺️
+    </button>
+  </div>
+  }
+
+  @if (busService.loading()) {
+  <p class="nearby-buses__loading">🌸 Buscando paradas...</p>
+  }
+
+  @if (busService.error()) {
+  <p class="nearby-buses__error">⚠️ {{ busService.error() }}</p>
+  }
+
+  @if (busService.stops().length > 0) {
+  <ul class="stop-list">
+    @for (stop of busService.stops(); track stop.id) {
+    <li class="stop-card">
+      <div class="stop-card__header">
+        <span class="stop-card__icon">🚏</span>
+        <div>
+          <p class="stop-card__name">{{ stop.name }}</p>
+          <p class="stop-card__address">{{ stop.address }} · {{ stop.distanceMeters }}m</p>
+        </div>
+      </div>
+
+      @if (stop.loadingArrivals) {
+      <p class="stop-card__loading">Cargando...</p>
+      } @else if (stop.arrivals.length === 0) {
+      <p class="stop-card__empty">Sin datos en este momento</p>
+      } @else {
+      <ul class="arrival-list">
+        @for (arrival of stop.arrivals; track arrival.lineName + arrival.minutesAway) {
+        <li class="arrival">
+          <span class="arrival__line" [class.arrival__line--amb]="arrival.operator === 'amb'">
+            {{ arrival.lineName }}
+          </span>
+          <span class="arrival__dest">{{ arrival.destination }}</span>
+          <span class="arrival__time">
+            {{ arrival.minutesAway === 0 ? 'Ahora' : arrival.minutesAway + ' min' }}
+          </span>
+        </li>
+        }
+      </ul>
+      }
+    </li>
+    }
+  </ul>
+  }
 </section>
