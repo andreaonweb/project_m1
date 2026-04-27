@@ -1,9 +1,10 @@
 import { Injectable, signal, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BusStop, BusArrival } from '../models/bus-stop.model';
+import { environment } from '../../../environments/environment';
 
-const APP_ID = 'bc967874';
-const APP_KEY = '8cd9f02ba4ad77582803c54c92f3fb31';
+const APP_ID  = environment.tmb.appId;
+const APP_KEY = environment.tmb.appKey;
 const BASE = 'https://api.tmb.cat/v1/itransit/bus/parades';
 
 @Injectable({ providedIn: 'root' })
