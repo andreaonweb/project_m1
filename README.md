@@ -4,6 +4,22 @@ Aplicación web de pastelería japonesa artesanal, construida con **Angular 18+*
 
 ---
 
+## 📸 Preview
+<img width="558" height="713" alt="image" src="https://github.com/user-attachments/assets/5cc14dcb-d230-4d1a-91d1-8a66152cfd29" />
+<br>
+<img width="1917" height="840" alt="image" src="https://github.com/user-attachments/assets/9e5c756e-903c-4a16-80bd-a38397543307" />
+<br>
+<img width="1914" height="900" alt="image" src="https://github.com/user-attachments/assets/4bcdd2dc-08d8-4699-8470-364d0ed07c6b" />
+<br>
+<img width="1919" height="885" alt="image" src="https://github.com/user-attachments/assets/eaeff42c-bea3-4d27-a114-1b46710be175" />
+<br>
+<img width="1919" height="907" alt="image" src="https://github.com/user-attachments/assets/e9322c1e-e3e0-4cf4-b4af-6ecdad1bec73" />
+<br>
+<img width="1915" height="903" alt="image" src="https://github.com/user-attachments/assets/e0271531-c0d2-4b2a-a696-757dd690469a" />
+<br>
+
+
+
 ## ✨ Características
 
 - Catálogo de productos con tarjetas interactivas
@@ -58,6 +74,7 @@ src/
 
 ---
 
+
 ## 🚀 Instalación y uso
 
 ```bash
@@ -73,6 +90,19 @@ ng serve
 ```
 
 Abre el navegador en `http://localhost:4200`
+
+---
+## 🔑 Variables de entorno
+
+Copia el archivo de ejemplo y rellena tus credenciales:
+
+```bash
+cp src/environments/environment.example.ts src/environments/environment.ts
+```
+
+Necesitarás credenciales de:
+- [Firebase Console](https://console.firebase.google.com)
+- [TMB Developer Portal](https://developer.tmb.cat)
 
 ---
 
