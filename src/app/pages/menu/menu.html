@@ -1,0 +1,19 @@
+<section class="menu">
+  <div class="menu__header">
+    <h1>Nuestra Carta</h1>
+    <p>おいしいメニュー · Dulces hechos con amor</p>
+  </div>
+
+  @if (cart.itemCount() > 0) {
+  <div class="menu__cart-info">
+    🛒 {{ cart.itemCount() }} artículos · Total: {{ cart.total() | currency:'EUR' }}
+  </div>
+  }
+
+  <div class="menu__grid">
+    @for (product of products; track product.id) {
+    <app-product-card [product]="product" [cartItems]="cartItems()" (onAdd)="addToCart($event)"
+      (onRemove)="removeFromCart($event)" />
+    }
+  </div>
+</section>

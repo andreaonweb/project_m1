@@ -1,0 +1,20 @@
+<div class="card">
+  @if (product().isNew) {
+  <span class="card__badge">✨ Nuevo</span>
+  }
+  <div class="card__emoji">{{ product().emoji }}</div>
+  <div class="card__info">
+    <h3 class="card__name">{{ product().name }}</h3>
+    <p class="card__jp">{{ product().nameJp }}</p>
+    <p class="card__desc">{{ product().description }}</p>
+    <div class="card__footer">
+      <span class="card__price">{{ product().price | currency:'EUR' }}</span>
+      <div class="card__actions">
+        @if (inCart()) {
+        <button class="card__btn card__btn--remove" (click)="onRemove.emit(product())">− Quitar</button>
+        }
+        <button class="card__btn" (click)="onAdd.emit(product())">+ Añadir</button>
+      </div>
+    </div>
+  </div>
+</div>

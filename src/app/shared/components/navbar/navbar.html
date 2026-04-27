@@ -1,0 +1,65 @@
+<nav class="navbar">
+  <div class="navbar__brand">
+    <span class="navbar__logo">🌸</span>
+  </div>
+
+  <ul class="navbar__links">
+    <li><a [routerLink]="'home'" routerLinkActive="active">🏠 Inicio</a></li>
+    <li><a [routerLink]="'menu'" routerLinkActive="active">🍡 Menú</a></li>
+    <li><a [routerLink]="'about'" routerLinkActive="active">🌷 Nosotras</a></li>
+  </ul>
+
+  <div class="navbar__actions">
+    @if (auth.isLoggedIn()) {
+    <button class="navbar__cart-btn" (click)="toggleCart()">
+      🛒
+      @if (cart.itemCount() > 0) {
+      <span class="navbar__cart-badge">{{ cart.itemCount() }}</span>
+      }
+    </button>
+    <button class="btn-logout" (click)="auth.logout()">Salir</button>
+    } @else {
+    <a [routerLink]="'auth'" class="btn-login">Entrar ✨</a>
+    }
+  </div>
+</nav>
+
+
+@if (cartOpen()) {
+<div class="cart-overlay" (click)="toggleCart()"></div>
+}
+
+
+<aside class="cart-panel" [class.cart-panel--open]="cartOpen()">
+  <div class="cart-panel__header">
+    <h2>🛒 Tu carrito</h2>
+    <button class="cart-panel__close" (click)="toggleCart()">✕</button>
+  </div>
+
+  @if (cart.itemCount() === 0) {
+  <p class="cart-panel__empty">Tu carrito está vacío 🌸</p>
+  } @else {
+  <ul class="cart-panel__list">
+    @for (item of cartItems(); track item.product.id) {
+    <li class="cart-item">
+      <span class="cart-item__emoji">{{ item.product.emoji }}</span>
+      <div class="cart-item__info">
+        <p class="cart-item__name">{{ item.product.name }}</p>
+        <p class="cart-item__price">{{ item.product.price | currency:'EUR' }} × {{ item.quantity }}</p>
+      </div>
+      <div class="cart-item__controls">
+        <button (click)="cart.remove(item.product.id)">−</button>
+        <span>{{ item.quantity }}</span>
+        <button (click)="cart.add(item.product)">+</button>
+        <button class="cart-item__delete" (click)="cart.removeAll(item.product.id)">🗑️</button>
+      </div>
+    </li>
+    }
+  </ul>
+
+  <div class="cart-panel__footer">
+    <p class="cart-panel__total">Total: {{ cart.total() | currency:'EUR' }}</p>
+    <button class="btn-primary">Hacer pedido ✨</button>
+  </div>
+  }
+</aside>

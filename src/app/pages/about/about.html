@@ -1,0 +1,33 @@
+<section class="about">
+    <div class="about__hero">
+        <span>🌸</span>
+        <h1>Nuestra Historia</h1>
+        <p>Nacimos en Kioto, crecimos en Barcelona</p>
+    </div>
+
+    <div class="about__content">
+        <div class="about__text">
+            <h2>愛を込めて · Con amor</h2>
+            <p>
+                Sakura Pâtisserie nació del sueño de traer la delicadeza de la
+                repostería japonesa a Europa. Cada dulce cuenta una historia:
+                la paciencia del wagashi, los colores de los cerezos en flor,
+                la calidez de una taza de matcha.
+            </p>
+            <p>
+                Usamos solo ingredientes auténticos importados de Japón,
+                combinados con productos locales de temporada.
+                Sin prisas. Sin atajos. Solo amor. 🎀
+            </p>
+        </div>
+        <div class="about__values">
+            @for (v of values; track v.title) {
+            <div class="value">
+                <span>{{ v.emoji }}</span>
+                <strong>{{ v.title }}</strong>
+                <p>{{ v.desc }}</p>
+            </div>
+            }
+        </div>
+    </div>
+</section>

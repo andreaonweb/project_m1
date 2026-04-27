@@ -1,0 +1,32 @@
+<section class="auth">
+  <div class="auth__card">
+    <div class="auth__icon">🌸</div>
+    <h1 class="auth__title">Sakura Pâtisserie</h1>
+    <p class="auth__sub">{{ isLogin() ? 'Inicia sesión' : 'Crea tu cuenta' }}</p>
+
+    <div class="auth__form">
+      <div class="field">
+        <label>📧 Email</label>
+        <input type="email" [(ngModel)]="email" placeholder="hana@sakura.com" />
+      </div>
+
+      <div class="field">
+        <label>🔑 Contraseña</label>
+        <input type="password" [(ngModel)]="password" placeholder="••••••••" />
+      </div>
+
+      @if (error()) {
+      <p class="auth__error">{{ error() }}</p>
+      }
+
+      <button class="btn-submit" [disabled]="loading()" (click)="submit()">
+        {{ loading() ? '⏳ Cargando...' : (isLogin() ? '✨ Entrar' : '🌸 Registrarme') }}
+      </button>
+
+      <p class="auth__toggle">
+        {{ isLogin() ? '¿No tienes cuenta?' : '¿Ya tienes cuenta?' }}
+        <span (click)="toggleMode()">{{ isLogin() ? 'Regístrate' : 'Inicia sesión' }}</span>
+      </p>
+    </div>
+  </div>
+</section>

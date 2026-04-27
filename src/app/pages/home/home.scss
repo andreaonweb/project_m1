@@ -1,0 +1,173 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.hero {
+  @include flex-center;
+  justify-content: space-between;
+  min-height: 80vh;
+  padding: 4rem 5rem;
+  background: linear-gradient(135deg, $secondary 0%, $cream 60%, $accent-light 100%);
+  position: relative;
+  overflow: hidden;
+
+  &__content {
+    max-width: 520px;
+    @include fade-in(0.1s);
+  }
+
+  &__sub {
+    font-size: 1rem;
+    color: $text-muted;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  &__title {
+    font-size: 3.5rem;
+    line-height: 1.1;
+    background: linear-gradient(135deg, darken($primary, 20%), darken($accent, 20%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  &__tagline {
+    font-size: 1.1rem;
+    color: $text-muted;
+    margin-bottom: 1rem;
+    letter-spacing: 0.1em;
+  }
+
+  &__desc {
+    color: $text-muted;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  &__emojis {
+    font-size: 4rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    @include fade-in(0.4s);
+
+    span {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .e1 {
+      animation-delay: 0s;
+    }
+
+    .e2 {
+      animation-delay: 0.4s;
+    }
+
+    .e3 {
+      animation-delay: 0.8s;
+    }
+
+    .e4 {
+      animation-delay: 1.2s;
+    }
+
+    .e5 {
+      animation-delay: 1.6s;
+    }
+  }
+}
+
+.btn-primary {
+  @include btn-primary;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  padding: 3rem 5rem;
+  background: $white;
+
+  .feature {
+    @include card;
+    padding: 2rem;
+    text-align: center;
+    @include fade-in(0.2s);
+    transition: transform 0.25s;
+
+    &:hover {
+      transform: translateY(-4px);
+    }
+
+    span {
+      font-size: 2.5rem;
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    h3 {
+      font-size: 1.05rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 0.88rem;
+      color: $text-muted;
+      line-height: 1.5;
+    }
+  }
+}
+
+.practica {
+  padding: 3rem 5rem;
+  text-align: center;
+  background: $secondary;
+
+  h2 {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    color: $text-dark;
+  }
+
+  &__resultado {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    transition: color 0.3s;
+    color: $text-dark;
+
+    &.positivo {
+      color: #2e7d32;
+    }
+
+    &.negativo {
+      color: #c62828;
+    }
+  }
+
+  &__botones {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+
+    button {
+      font-size: 1.5rem;
+      padding: 0.6rem 1.4rem;
+      border: none;
+      border-radius: $radius-xl;
+      background: $white;
+      cursor: pointer;
+      transition: transform 0.15s;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  &__estado {
+    font-size: 1rem;
+    color: $text-muted;
+  }
+}

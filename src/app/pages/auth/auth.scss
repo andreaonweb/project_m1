@@ -1,0 +1,92 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.auth {
+  @include flex-center;
+  min-height: 80vh;
+  background: linear-gradient(135deg, $secondary 0%, $cream 50%, $accent-light 100%);
+
+  &__card {
+    @include card;
+    padding: 3rem 2.5rem;
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+    @include fade-in;
+  }
+
+  &__icon  { font-size: 3rem; animation: float 3s ease-in-out infinite; }
+  &__title { font-size: 1.8rem; margin: 0.75rem 0 0.25rem; }
+  &__sub   { color: $text-muted; margin-bottom: 2rem; font-size: 0.95rem; }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    text-align: left;
+  }
+
+  &__error {
+    background: #fde8e8;
+    color: #c0392b;
+    padding: 0.6rem 1rem;
+    border-radius: $radius-sm;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  &__toggle {
+    text-align: center;
+    font-size: 0.88rem;
+    color: $text-muted;
+    margin-top: 0.5rem;
+
+    span {
+      color: darken($primary, 20%);
+      font-weight: 700;
+      cursor: pointer;
+      margin-left: 0.3rem;
+
+      &:hover { text-decoration: underline; }
+    }
+  }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+
+  label { font-size: 0.85rem; font-weight: 700; color: $text-dark; }
+
+  input {
+    padding: 0.75rem 1rem;
+    border: 1.5px solid $border;
+    border-radius: $radius-md;
+    font-size: 0.95rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background: $cream;
+    color: $text-dark;
+
+    &::placeholder { color: lighten($text-muted, 15%); }
+
+    &:focus {
+      outline: none;
+      border-color: $primary;
+      box-shadow: 0 0 0 3px rgba(249,196,210,0.25);
+    }
+  }
+}
+
+.btn-submit {
+  @include btn-primary;
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.85rem;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
