@@ -7,6 +7,8 @@ Aplicación web de pastelería japonesa artesanal, construida con **Angular 18+*
 ## 📸 Preview
 <img width="558" height="713" alt="image" src="https://github.com/user-attachments/assets/5cc14dcb-d230-4d1a-91d1-8a66152cfd29" />
 <br>
+<img width="1917" height="840" alt="image" src="https://github.com/user-attachments/assets/9e5c756e-903c-4a16-80bd-a38397543307" />
+<br>
 <img width="1914" height="900" alt="image" src="https://github.com/user-attachments/assets/4bcdd2dc-08d8-4699-8470-364d0ed07c6b" />
 <br>
 <img width="1919" height="885" alt="image" src="https://github.com/user-attachments/assets/eaeff42c-bea3-4d27-a114-1b46710be175" />
