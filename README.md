@@ -4,6 +4,18 @@ Aplicación web de pastelería japonesa artesanal, construida con **Angular 18+*
 
 ---
 
+## 📸 Preview
+<img width="558" height="713" alt="image" src="https://github.com/user-attachments/assets/5cc14dcb-d230-4d1a-91d1-8a66152cfd29" />
+<br>
+<img width="1914" height="900" alt="image" src="https://github.com/user-attachments/assets/4bcdd2dc-08d8-4699-8470-364d0ed07c6b" />
+<br>
+<img width="1919" height="907" alt="image" src="https://github.com/user-attachments/assets/e9322c1e-e3e0-4cf4-b4af-6ecdad1bec73" />
+<br>
+<img width="448" height="849" alt="image" src="https://github.com/user-attachments/assets/de41fa46-6512-43a1-8ab8-36b4f6980ea3" />
+<br>
+
+
+
 ## ✨ Características
 
 - Catálogo de productos con tarjetas interactivas
@@ -57,6 +69,7 @@ src/
 ```
 
 ---
+
 
 ## 🚀 Instalación y uso
 
