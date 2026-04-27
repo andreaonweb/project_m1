@@ -10,9 +10,20 @@
     text-align: center;
     @include fade-in;
 
-    span { font-size: 4rem; animation: float 3s ease-in-out infinite; }
-    h1   { font-size: 2.8rem; margin-top: 1rem; }
-    p    { color: $text-muted; margin-top: 0.5rem; }
+    span {
+      font-size: 4rem;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      margin-top: 1rem;
+    }
+
+    p {
+      color: $text-muted;
+      margin-top: 0.5rem;
+    }
   }
 
   &__content {
@@ -24,8 +35,17 @@
 
   &__text {
     @include fade-in(0.2s);
-    h2 { font-size: 1.8rem; margin-bottom: 1rem; }
-    p  { color: $text-muted; line-height: 1.8; margin-bottom: 1rem; }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: $text-muted;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
   }
 
   &__values {
@@ -44,9 +64,22 @@
   @include fade-in(0.3s);
   transition: transform 0.2s;
 
-  &:hover { transform: translateX(4px); }
+  &:hover {
+    transform: translateX(4px);
+  }
 
-  span   { font-size: 1.8rem; }
-  strong { font-size: 0.95rem; min-width: 80px; }
-  p      { font-size: 0.85rem; color: $text-muted; line-height: 1.4; }
+  span {
+    font-size: 1.8rem;
+  }
+
+  strong {
+    font-size: 0.95rem;
+    min-width: 80px;
+  }
+
+  p {
+    font-size: 0.85rem;
+    color: $text-muted;
+    line-height: 1.4;
+  }
 }

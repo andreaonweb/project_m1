@@ -44,37 +44,19 @@
     margin-bottom: 2rem;
   }
 
-  &__emojis {
-    font-size: 4rem;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+  &__image {
     @include fade-in(0.4s);
+    flex-shrink: 0;
 
-    span {
-      animation: float 3s ease-in-out infinite;
-    }
-
-    .e1 {
-      animation-delay: 0s;
-    }
-
-    .e2 {
-      animation-delay: 0.4s;
-    }
-
-    .e3 {
-      animation-delay: 0.8s;
-    }
-
-    .e4 {
-      animation-delay: 1.2s;
-    }
-
-    .e5 {
-      animation-delay: 1.6s;
+    img {
+      width: 420px;
+      height: 420px;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: 0 20px 60px rgba(darken($primary, 20%), 0.25);
     }
   }
+
 }
 
 .btn-primary {

@@ -15,9 +15,21 @@
     @include fade-in;
   }
 
-  &__icon  { font-size: 3rem; animation: float 3s ease-in-out infinite; }
-  &__title { font-size: 1.8rem; margin: 0.75rem 0 0.25rem; }
-  &__sub   { color: $text-muted; margin-bottom: 2rem; font-size: 0.95rem; }
+  &__icon {
+    font-size: 3rem;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  &__title {
+    font-size: 1.8rem;
+    margin: 0.75rem 0 0.25rem;
+  }
+
+  &__sub {
+    color: $text-muted;
+    margin-bottom: 2rem;
+    font-size: 0.95rem;
+  }
 
   &__form {
     display: flex;
@@ -47,7 +59,9 @@
       cursor: pointer;
       margin-left: 0.3rem;
 
-      &:hover { text-decoration: underline; }
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 }
@@ -57,7 +71,11 @@
   flex-direction: column;
   gap: 0.35rem;
 
-  label { font-size: 0.85rem; font-weight: 700; color: $text-dark; }
+  label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: $text-dark;
+  }
 
   input {
     padding: 0.75rem 1rem;
@@ -68,12 +86,14 @@
     background: $cream;
     color: $text-dark;
 
-    &::placeholder { color: lighten($text-muted, 15%); }
+    &::placeholder {
+      color: lighten($text-muted, 15%);
+    }
 
     &:focus {
       outline: none;
       border-color: $primary;
-      box-shadow: 0 0 0 3px rgba(249,196,210,0.25);
+      box-shadow: 0 0 0 3px rgba(249, 196, 210, 0.25);
     }
   }
 }

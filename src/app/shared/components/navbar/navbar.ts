@@ -15,7 +15,7 @@ export class NavbarComponent {
   auth = inject(AuthService);
   cart = inject(CartService);
 
-  cartOpen  = signal(false);
+  cartOpen = signal(false);
   cartItems = this.cart.getItems();
 
   toggleCart(): void {

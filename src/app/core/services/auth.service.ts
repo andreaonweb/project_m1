@@ -9,7 +9,6 @@ export class AuthService {
   private auth = inject(Auth);
   private router = inject(Router);
 
-  // Signal reactivo del usuario actual
   currentUser = toSignal(user(this.auth));
   isLoggedIn = computed(() => !!this.currentUser());
 
