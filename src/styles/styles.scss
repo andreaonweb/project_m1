@@ -48,3 +48,7 @@ button {
   background: $primary;
   border-radius: 10px;
 }
+
+lucide-icon svg {
+  stroke: currentColor;
+}

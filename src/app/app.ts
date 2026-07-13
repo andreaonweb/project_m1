@@ -18,4 +18,4 @@ import { FooterComponent } from './shared/components/footer/footer';
     main { min-height: calc(100vh - 140px); }
   `]
 })
-export class App {}
+export class App { }

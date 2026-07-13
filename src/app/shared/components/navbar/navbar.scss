@@ -11,6 +11,7 @@
   position: sticky;
   top: 0;
   z-index: 100;
+  position: relative;
 
   &__brand {
     @include flex-center;
@@ -48,29 +49,61 @@
   }
 
   &__links {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 2rem;
     list-style: none;
-    @include flex-center;
-    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
 
     a {
-      padding: 0.5rem 1.1rem;
-      border-radius: $radius-xl;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: $text-dark;
       font-weight: 600;
-      color: $text-muted;
-      transition: background 0.2s, color 0.2s;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
+      padding: 0.4rem 0.75rem;
+      border-radius: $radius-xl;
+      transition: all 0.2s;
 
-      &:hover,
-      &.active {
-        background: $secondary;
+      &:hover {
         color: $text-dark;
+        background: rgba($primary, 0.08);
       }
+
+      &.active {
+        color: darken($primary, 10%);
+        background: rgba($primary, 0.12);
+        font-weight: 600;
+      }
+
+      ::ng-deep lucide-icon svg {
+        stroke: darken($primary, 10%);
+        opacity: 0.85;
+        transition: opacity 0.2s;
+      }
+
+      &:hover ::ng-deep lucide-icon svg,
+      &.active ::ng-deep lucide-icon svg {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__cart-btn {
+    ::ng-deep lucide-icon svg {
+      stroke: $primary;
     }
   }
 
   &__actions {
     @include flex-center;
-    gap: 1rem;
+    gap: 1.5rem;
   }
 
   &__cart {
