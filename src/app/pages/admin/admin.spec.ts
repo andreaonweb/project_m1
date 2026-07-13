@@ -121,4 +121,39 @@ describe('AdminComponent', () => {
 
     expect(productService.remove).not.toHaveBeenCalled();
   });
+
+  it('startEdit() does not carry a stale isNew value over from a previous edit', () => {
+    component.startEdit({ ...SAMPLE_PRODUCT, isNew: true });
+    expect(component.form.value.isNew).toBe(true);
+
+    const productWithoutIsNew: Product = {
+      id: '2',
+      name: 'Donut Sakura',
+      nameJp: 'さくらドーナツ',
+      price: 4.2,
+      description: 'Glaseado rosa con pétalos de rosa comestibles.',
+      emoji: '🌸',
+      category: 'donut',
+    };
+    component.startEdit(productWithoutIsNew);
+
+    expect(component.form.value.isNew).toBe(false);
+  });
+
+  it('seed() sets saving() while in flight and resets it to false afterwards', async () => {
+    let resolveSeed!: () => void;
+    productService.seedIfEmpty.mockReturnValue(
+      new Promise<void>((resolve) => {
+        resolveSeed = resolve;
+      }),
+    );
+
+    const seedPromise = component.seed();
+    expect(component.saving()).toBe(true);
+
+    resolveSeed();
+    await seedPromise;
+
+    expect(component.saving()).toBe(false);
+  });
 });

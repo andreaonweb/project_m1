@@ -11,7 +11,7 @@
   @if (productService.products().length === 0) {
   <div class="admin__seed">
     <p>No hay productos todavía.</p>
-    <button type="button" class="btn-primary" (click)="seed()">Cargar productos de ejemplo</button>
+    <button type="button" class="btn-primary" [disabled]="saving()" (click)="seed()">Cargar productos de ejemplo</button>
   </div>
   }
 

@@ -42,6 +42,7 @@ export class AdminComponent {
 
   startEdit(product: Product): void {
     this.editingId.set(product.id);
+    this.form.reset({ name: '', nameJp: '', price: 0, description: '', emoji: '', category: 'mochi', isNew: false });
     this.form.patchValue(product);
   }
 
@@ -83,10 +84,13 @@ export class AdminComponent {
 
   async seed(): Promise<void> {
     this.error.set('');
+    this.saving.set(true);
     try {
       await this.productService.seedIfEmpty(SAMPLE_PRODUCTS);
     } catch (e: any) {
       this.error.set('❌ ' + (e.message ?? 'Error al cargar productos de ejemplo'));
+    } finally {
+      this.saving.set(false);
     }
   }
 }
