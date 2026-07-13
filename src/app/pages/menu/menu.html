@@ -11,7 +11,7 @@
   }
 
   <div class="menu__grid">
-    @for (product of products; track product.id) {
+    @for (product of products(); track product.id) {
     <app-product-card [product]="product" [cartItems]="cartItems()" (onAdd)="addToCart($event)"
       (onRemove)="removeFromCart($event)" />
     }
