@@ -1,0 +1,92 @@
+import { Component, inject, signal } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CurrencyPipe } from '@angular/common';
+import { ProductService } from '../../core/services/product.service';
+import { Product } from '../../core/models/product.model';
+
+const SAMPLE_PRODUCTS: Omit<Product, 'id'>[] = [
+  { name: 'Mochi de Fresa', nameJp: 'いちご大福', price: 3.5, description: 'Tierno mochi relleno de anko y fresas frescas.', emoji: '🍓', category: 'mochi', isNew: true },
+  { name: 'Donut Sakura', nameJp: 'さくらドーナツ', price: 4.2, description: 'Glaseado rosa con pétalos de rosa comestibles.', emoji: '🌸', category: 'donut' },
+  { name: 'Tarta Matcha', nameJp: '抹茶ケーキ', price: 5.8, description: 'Bizcocho de matcha con nata ligera y judías rojas.', emoji: '🍵', category: 'cake', isNew: true },
+  { name: 'Mochi Matcha', nameJp: '抹茶餅', price: 3.5, description: 'Clásico mochi con relleno de pasta de matcha.', emoji: '🟢', category: 'mochi' },
+  { name: 'Té de Yuzu', nameJp: 'ゆず茶', price: 3.0, description: 'Refrescante té caliente con cítrico yuzu japonés.', emoji: '🍋', category: 'drink' },
+  { name: 'Shortcake Sakura', nameJp: '桜ショートケーキ', price: 6.5, description: 'Tarta japonesa de nata con sakura salada.', emoji: '🎂', category: 'cake' },
+];
+
+@Component({
+  selector: 'app-admin',
+  standalone: true,
+  imports: [ReactiveFormsModule, CurrencyPipe],
+  templateUrl: './admin.html',
+  styleUrl: './admin.scss',
+})
+export class AdminComponent {
+  private fb = inject(FormBuilder);
+  productService = inject(ProductService);
+
+  editingId = signal<string | null>(null);
+  error = signal('');
+  saving = signal(false);
+
+  readonly categories: Product['category'][] = ['mochi', 'donut', 'cake', 'drink'];
+
+  form = this.fb.nonNullable.group({
+    name: ['', Validators.required],
+    nameJp: [''],
+    price: [0, [Validators.required, Validators.min(0.01)]],
+    description: ['', Validators.required],
+    emoji: ['', Validators.required],
+    category: this.fb.nonNullable.control<Product['category']>('mochi', Validators.required),
+    isNew: [false],
+  });
+
+  startEdit(product: Product): void {
+    this.editingId.set(product.id);
+    this.form.patchValue(product);
+  }
+
+  cancelEdit(): void {
+    this.editingId.set(null);
+    this.form.reset({ name: '', nameJp: '', price: 0, description: '', emoji: '', category: 'mochi', isNew: false });
+  }
+
+  async submit(): Promise<void> {
+    if (this.form.invalid) return;
+    this.saving.set(true);
+    this.error.set('');
+    const value = this.form.getRawValue();
+    try {
+      const id = this.editingId();
+      if (id) {
+        await this.productService.update(id, value);
+      } else {
+        await this.productService.create(value);
+      }
+      this.cancelEdit();
+    } catch (e: any) {
+      this.error.set('❌ ' + (e.message ?? 'Error al guardar el producto'));
+    } finally {
+      this.saving.set(false);
+    }
+  }
+
+  async remove(product: Product): Promise<void> {
+    if (!confirm(`¿Borrar "${product.name}"?`)) return;
+    this.error.set('');
+    try {
+      await this.productService.remove(product.id);
+      if (this.editingId() === product.id) this.cancelEdit();
+    } catch (e: any) {
+      this.error.set('❌ ' + (e.message ?? 'Error al borrar el producto'));
+    }
+  }
+
+  async seed(): Promise<void> {
+    this.error.set('');
+    try {
+      await this.productService.seedIfEmpty(SAMPLE_PRODUCTS);
+    } catch (e: any) {
+      this.error.set('❌ ' + (e.message ?? 'Error al cargar productos de ejemplo'));
+    }
+  }
+}
