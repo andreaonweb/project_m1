@@ -4,6 +4,11 @@ import { CurrencyPipe } from '@angular/common';
 import { ProductService } from '../../core/services/product.service';
 import { Product } from '../../core/models/product.model';
 
+const EMOJI_OPTIONS: string[] = [
+  '🍓', '🌸', '🍵', '🟢', '🍋', '🎂', '🥞', '🐟', '🍰', '🍙', '🧋', '🍮', '🥤',
+  '🍡', '🍪', '🍩', '🧁', '🍦', '🍨', '🍯', '🍬', '🍫', '🍭', '🥧', '🫖', '☕',
+];
+
 const SAMPLE_PRODUCTS: Omit<Product, 'id'>[] = [
   { name: 'Mochi de Fresa', nameJp: 'いちご大福', price: 3.5, description: 'Tierno mochi relleno de anko y fresas frescas.', emoji: '🍓', category: 'mochi', isNew: true },
   { name: 'Donut Sakura', nameJp: 'さくらドーナツ', price: 4.2, description: 'Glaseado rosa con pétalos de rosa comestibles.', emoji: '🌸', category: 'donut' },
@@ -29,6 +34,7 @@ export class AdminComponent {
   saving = signal(false);
 
   readonly categories: Product['category'][] = ['mochi', 'donut', 'cake', 'drink'];
+  readonly emojiOptions = EMOJI_OPTIONS;
 
   form = this.fb.nonNullable.group({
     name: ['', Validators.required],
@@ -39,6 +45,10 @@ export class AdminComponent {
     category: this.fb.nonNullable.control<Product['category']>('mochi', Validators.required),
     isNew: [false],
   });
+
+  pickEmoji(emoji: string): void {
+    this.form.controls.emoji.setValue(emoji);
+  }
 
   startEdit(product: Product): void {
     this.editingId.set(product.id);

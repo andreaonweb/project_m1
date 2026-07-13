@@ -26,6 +26,7 @@ Aplicación web de pastelería japonesa artesanal, construida con **Angular 18+*
 - Carrito de compra reactivo con panel lateral deslizante
 - Gestión de cantidades por producto (añadir, disminuir, eliminar)
 - Autenticación de usuario (login / logout)
+- Panel de administración (`/admin`) con CRUD de productos (crear, editar, borrar) usando **Reactive Forms**, persistido en **Firestore**
 - Navegación entre páginas con Angular Router
 - Arquitectura basada en **Signals** y **computed values**
 - Paradas de bus cercanas en tiempo real via **API i-Bus de TMB**
@@ -40,6 +41,8 @@ Aplicación web de pastelería japonesa artesanal, construida con **Angular 18+*
 | TypeScript | 5+ |
 | Angular Signals | API nativa |
 | Angular Router | Standalone |
+| Angular Reactive Forms | API nativa |
+| Firebase / Firestore | @angular/fire |
 | HttpClient | Angular nativo |
 | SCSS | — |
 | API i-Bus TMB | v1 |
@@ -58,10 +61,12 @@ src/
 │   │   └── services/
 │   │       ├── auth.service.ts        # Autenticación
 │   │       ├── cart.service.ts        # Carrito reactivo con Signals
+│   │       ├── product.service.ts     # CRUD de productos en Firestore
 │   │       └── bus.service.ts         # Paradas cercanas + tiempo real TMB
 │   ├── pages/
 │   │   ├── home/                      # Página de inicio + sección buses
 │   │   ├── menu/                      # Catálogo de productos
+│   │   ├── admin/                     # CRUD de productos con Reactive Forms
 │   │   └── about/                     # Página nosotras
 │   └── shared/
 │       └── components/
@@ -119,6 +124,21 @@ getItems()         // devuelve ReadonlySignal<CartItem[]>
 
 ---
 
+## 🛠️ ProductService · CRUD de productos
+
+Panel de administración en `/admin` (protegido, requiere sesión iniciada) para gestionar el catálogo con un formulario reactivo:
+
+```typescript
+create(product)     // crea un producto nuevo en Firestore
+update(id, changes)  // actualiza un producto existente
+remove(id)           // borra un producto
+seedIfEmpty(list)    // carga productos de ejemplo si la colección está vacía
+```
+
+Los productos se guardan en Firestore y `products` se expone como un `Signal<Product[]>`, compartido entre `/admin` y `/menu` — cualquier alta, edición o borrado se refleja al instante en el catálogo público.
+
+---
+
 ## 🚌 BusService · API TMB
 
 Muestra las paradas de bus más cercanas a la pastelería con tiempos de llegada en tiempo real usando la API i-Bus de TMB.
@@ -142,6 +162,7 @@ const APP_KEY = 'tu_app_key';
 |---|---|
 | `/home` | Bienvenida, características y paradas de bus cercanas |
 | `/menu` | Catálogo de productos con carrito integrado |
+| `/admin` | CRUD de productos (crear, editar, borrar) con Reactive Forms |
 | `/about` | Información sobre el equipo |
 | `/auth` | Inicio de sesión |
 
