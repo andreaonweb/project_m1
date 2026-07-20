@@ -23,6 +23,12 @@ export class AuthComponent {
     this.error.set('');
   }
 
+  fillDemoAccount(): void {
+    this.isLogin.set(true);
+    this.email = 'admin@email.com';
+    this.password = 'admin123';
+  }
+
   async submit(): Promise<void> {
     this.loading.set(true);
     this.error.set('');

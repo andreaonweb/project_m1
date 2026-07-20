@@ -38,6 +38,38 @@
     text-align: left;
   }
 
+  &__demo {
+    background: $secondary;
+    border: 1px dashed $border;
+    border-radius: $radius-sm;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+
+    p {
+      font-size: 0.82rem;
+      color: $text-dark;
+      margin: 0 0 0.5rem;
+    }
+  }
+
+  &__demo-btn {
+    background: transparent;
+    border: 1.5px solid $primary;
+    border-radius: $radius-xl;
+    padding: 0.4rem 1rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: darken($primary, 20%);
+    cursor: pointer;
+    transition: background 0.15s ease;
+
+    &:hover {
+      background: $primary;
+      color: $text-dark;
+    }
+  }
+
   &__error {
     background: #fde8e8;
     color: #c0392b;

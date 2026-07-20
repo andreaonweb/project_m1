@@ -4,6 +4,11 @@
     <h1 class="auth__title">Shirayuki Pâtisserie</h1>
     <p class="auth__sub">{{ isLogin() ? 'Inicia sesión' : 'Crea tu cuenta' }}</p>
 
+    <div class="auth__demo">
+      <p>🎬 Cuenta demo: <strong>admin@email.com</strong> / <strong>admin123</strong></p>
+      <button type="button" class="auth__demo-btn" (click)="fillDemoAccount()">Usar cuenta demo</button>
+    </div>
+
     <div class="auth__form">
       <div class="field">
         <label>📧 Email</label>
