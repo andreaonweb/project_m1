@@ -15,7 +15,6 @@ class FakeProductService {
 const SAMPLE_PRODUCT: Product = {
   id: '1',
   name: 'Mochi de Fresa',
-  nameJp: 'いちご大福',
   price: 3.5,
   description: 'Tierno mochi relleno de anko y fresas frescas.',
   emoji: '🍓',
@@ -50,7 +49,6 @@ describe('AdminComponent', () => {
   it('form is valid once required fields are filled', () => {
     component.form.setValue({
       name: 'Mochi de Fresa',
-      nameJp: '',
       price: 3.5,
       description: 'Tierno mochi.',
       emoji: '🍓',
@@ -63,7 +61,6 @@ describe('AdminComponent', () => {
   it('submit() calls productService.create with the form value when not editing', async () => {
     component.form.setValue({
       name: 'Mochi de Fresa',
-      nameJp: 'いちご大福',
       price: 3.5,
       description: 'Tierno mochi relleno de anko y fresas frescas.',
       emoji: '🍓',
@@ -75,7 +72,6 @@ describe('AdminComponent', () => {
 
     expect(productService.create).toHaveBeenCalledWith({
       name: 'Mochi de Fresa',
-      nameJp: 'いちご大福',
       price: 3.5,
       description: 'Tierno mochi relleno de anko y fresas frescas.',
       emoji: '🍓',
@@ -95,7 +91,6 @@ describe('AdminComponent', () => {
 
     expect(productService.update).toHaveBeenCalledWith('1', {
       name: 'Mochi de Fresa',
-      nameJp: 'いちご大福',
       price: 3.5,
       description: 'Tierno mochi relleno de anko y fresas frescas.',
       emoji: '🍓',
@@ -129,7 +124,6 @@ describe('AdminComponent', () => {
     const productWithoutIsNew: Product = {
       id: '2',
       name: 'Donut Sakura',
-      nameJp: 'さくらドーナツ',
       price: 4.2,
       description: 'Glaseado rosa con pétalos de rosa comestibles.',
       emoji: '🌸',

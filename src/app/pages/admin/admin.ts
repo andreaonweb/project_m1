@@ -10,12 +10,12 @@ const EMOJI_OPTIONS: string[] = [
 ];
 
 const SAMPLE_PRODUCTS: Omit<Product, 'id'>[] = [
-  { name: 'Mochi de Fresa', nameJp: 'いちご大福', price: 3.5, description: 'Tierno mochi relleno de anko y fresas frescas.', emoji: '🍓', category: 'mochi', isNew: true },
-  { name: 'Donut Sakura', nameJp: 'さくらドーナツ', price: 4.2, description: 'Glaseado rosa con pétalos de rosa comestibles.', emoji: '🌸', category: 'donut' },
-  { name: 'Tarta Matcha', nameJp: '抹茶ケーキ', price: 5.8, description: 'Bizcocho de matcha con nata ligera y judías rojas.', emoji: '🍵', category: 'cake', isNew: true },
-  { name: 'Mochi Matcha', nameJp: '抹茶餅', price: 3.5, description: 'Clásico mochi con relleno de pasta de matcha.', emoji: '🟢', category: 'mochi' },
-  { name: 'Té de Yuzu', nameJp: 'ゆず茶', price: 3.0, description: 'Refrescante té caliente con cítrico yuzu japonés.', emoji: '🍋', category: 'drink' },
-  { name: 'Shortcake Sakura', nameJp: '桜ショートケーキ', price: 6.5, description: 'Tarta japonesa de nata con sakura salada.', emoji: '🎂', category: 'cake' },
+  { name: 'Mochi de Fresa', price: 3.5, description: 'Tierno mochi relleno de anko y fresas frescas.', emoji: '🍓', category: 'mochi', isNew: true },
+  { name: 'Donut Sakura', price: 4.2, description: 'Glaseado rosa con pétalos de rosa comestibles.', emoji: '🌸', category: 'donut' },
+  { name: 'Tarta Matcha', price: 5.8, description: 'Bizcocho de matcha con nata ligera y judías rojas.', emoji: '🍵', category: 'cake', isNew: true },
+  { name: 'Mochi Matcha', price: 3.5, description: 'Clásico mochi con relleno de pasta de matcha.', emoji: '🟢', category: 'mochi' },
+  { name: 'Té de Yuzu', price: 3.0, description: 'Refrescante té caliente con cítrico yuzu japonés.', emoji: '🍋', category: 'drink' },
+  { name: 'Shortcake Sakura', price: 6.5, description: 'Tarta japonesa de nata con sakura salada.', emoji: '🎂', category: 'cake' },
 ];
 
 @Component({
@@ -38,7 +38,6 @@ export class AdminComponent {
 
   form = this.fb.nonNullable.group({
     name: ['', Validators.required],
-    nameJp: [''],
     price: [0, [Validators.required, Validators.min(0.01)]],
     description: ['', Validators.required],
     emoji: ['', Validators.required],
@@ -52,13 +51,13 @@ export class AdminComponent {
 
   startEdit(product: Product): void {
     this.editingId.set(product.id);
-    this.form.reset({ name: '', nameJp: '', price: 0, description: '', emoji: '', category: 'mochi', isNew: false });
+    this.form.reset({ name: '', price: 0, description: '', emoji: '', category: 'mochi', isNew: false });
     this.form.patchValue(product);
   }
 
   cancelEdit(): void {
     this.editingId.set(null);
-    this.form.reset({ name: '', nameJp: '', price: 0, description: '', emoji: '', category: 'mochi', isNew: false });
+    this.form.reset({ name: '', price: 0, description: '', emoji: '', category: 'mochi', isNew: false });
   }
 
   async submit(): Promise<void> {

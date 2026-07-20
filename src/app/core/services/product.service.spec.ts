@@ -23,7 +23,6 @@ vi.mock('@angular/fire/firestore', () => ({
 
 const SAMPLE_PRODUCT: Omit<Product, 'id'> = {
   name: 'Mochi de Fresa',
-  nameJp: 'いちご大福',
   price: 3.5,
   description: 'Tierno mochi relleno de anko y fresas frescas.',
   emoji: '🍓',
